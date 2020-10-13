@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import MarketTable from './components/market-table';
+import MarketTable from './pages/market-table';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
