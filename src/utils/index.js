@@ -1,5 +1,3 @@
-import React from 'react';
-
 export const createCoinNameArray = coinArray => {
 	const coinNameArray = [];
 	coinArray.forEach(coin => {
@@ -9,5 +7,5 @@ export const createCoinNameArray = coinArray => {
 };
 
 export const getFirst20Items = items => {
-	return items.slice(0, 20).map(item => <li>{item}</li>);
+	return items.slice(0, 20);
 };
