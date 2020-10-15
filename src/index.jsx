@@ -5,10 +5,10 @@ import CoinTable from './pages/coin-table';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
-	<React.StrictMode>
-		<CoinTable />
-	</React.StrictMode>,
-	document.getElementById('root')
+  <React.StrictMode>
+    <CoinTable />
+  </React.StrictMode>,
+  document.getElementById('root')
 );
 
 // If you want your app to work offline and load faster, you can change
