@@ -13,10 +13,22 @@
 		"react-dom": "^16.13.1",
 		"react-scripts": "3.4.3"
 	},
+	"devDependencies": {
+		"eslint": "6.6.0",
+		"enzyme-to-json": "^3.4.4",
+		"eslint-config-airbnb": "^18.2.0",
+		"eslint-config-prettier": "^6.11.0",
+		"eslint-plugin-import": "^2.22.0",
+		"eslint-plugin-react": "^7.20.3",
+		"qa-utilities": "^1.1.0"
+	},
 	"scripts": {
 		"start": "react-scripts start",
 		"build": "react-scripts build",
-		"test": "react-scripts test --coverage",
+		"test": "npm run test:scripts && npm run lint",
+		"test:scripts": "react-scripts test --coverage --env=jsdom --setupFiles ./src/setupTests.js --watchAll=false",
+		"test:scripts:watch": "react-scripts test --env=jsdom --setupFiles ./src/setupTests.js --coverage --watchAll=true",
+		"lint": "eslint src/**/*.js src/**/*.jsx",
 		"eject": "react-scripts eject"
 	},
 	"eslintConfig": {
