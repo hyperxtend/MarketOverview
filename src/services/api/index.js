@@ -1,7 +1,8 @@
 import axios from 'axios';
+
 import { saveToSessionStorage } from '../session-storage';
 
-export const getAPIData = async (requestURL, storedKeys) => {
+const getAPIData = async (requestURL, storedKeys) => {
 	const response = await axios
 		.get(requestURL)
 		.then(request => request)
@@ -15,7 +16,8 @@ export const getAPIData = async (requestURL, storedKeys) => {
 		}
 		return response;
 	} catch (error) {
-		console.log(error);
 		return Promise.reject(error);
 	}
 };
+
+export default getAPIData;

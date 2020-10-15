@@ -1,1 +1,3 @@
-export const storageKeys = { coinNames: 'coin-names' };
+const storageKeys = { coinNames: 'coin-names' };
+
+export default storageKeys;

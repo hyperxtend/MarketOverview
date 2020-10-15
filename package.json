@@ -22,6 +22,12 @@
 		"eslint-plugin-react": "^7.20.3",
 		"qa-utilities": "^1.1.0"
 	},
+	"jest": {
+		"coveragePathIgnorePatterns": [
+			"/src/serviceWorker.js",
+			"/src/index.js"
+		]
+	},
 	"scripts": {
 		"start": "react-scripts start",
 		"build": "react-scripts build",

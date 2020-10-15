@@ -1,4 +1,5 @@
 import React from 'react';
+
 import CoinNames from '../../components/coin-names';
 
 const CoinTable = () => (
