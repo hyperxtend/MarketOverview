@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import MarketTable from './pages/market-table';
+import CoinTable from './pages/coin-table';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
 	<React.StrictMode>
-		<MarketTable />
+		<CoinTable />
 	</React.StrictMode>,
 	document.getElementById('root')
 );
