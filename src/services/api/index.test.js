@@ -1,13 +1,14 @@
 import axios from 'axios';
-import getAPIData from './index';
 
 import API_URLS from '../../api/constants';
-import storageKeys from '../../services/session-storage/constants';
+import storageKeys from '../session-storage/constants';
+
+import getAPIData from './index';
 
 jest.mock('axios');
 
-describe('fetchData', () => {
-  it('returns the title of the first album', async () => {
+describe('getAPIData', () => {
+  it('returns the name of the first coin', async () => {
     axios.get.mockResolvedValue({
       data: [
         { id: '01coin', symbol: 'zoc', name: '01coin' },
