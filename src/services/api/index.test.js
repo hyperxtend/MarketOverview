@@ -11,25 +11,15 @@ describe('getAPIData', () => {
   it('returns the name of the first coin', async () => {
     axios.get.mockResolvedValue({
       data: [
-        { id: '01coin', symbol: 'zoc', name: '01coin' },
-        {
-          id: '0-5x-long-algorand-token',
-          symbol: 'algohalf',
-          name: '0.5X Long Algorand Token',
-        },
-        {
-          id: '0-5x-long-altcoin-index-token',
-          symbol: 'althalf',
-          name: '0.5X Long Altcoin Index Token',
-        },
-        {
-          id: '0-5x-long-balancer-token',
-          symbol: 'balhalf',
-          name: '0.5X Long Balancer Token',
-        },
+        { id: '01-coin', value: 1, name: 'test-coin-1' },
+        { id: '02-coin', value: 2, name: 'test-coin-2' },
+        { id: '03-coin', value: 3, name: 'test-coin-3' },
+        { id: '04-coin', value: 4, name: 'test-coin-4' },
+        { id: '05-coin', value: 5, name: 'test-coin-5' },
+        { id: '06-coin', value: 6, name: 'test-coin-6' },
       ],
     });
-    const firstCoinName = '01coin';
+    const firstCoinName = 'test-coin-1';
 
     const getRequest = await getAPIData(
       API_URLS.coinList,
