@@ -10,10 +10,13 @@ const CoinNames = () => {
   const [coinNames, setCoinNames] = useState([]);
 
   useEffect(() => {
-    getAPIData(API_URLS.coinList, storageKeys.coinNames);
-    const storedCoinNames = getFromSessionStorage(storageKeys.coinNames);
-    const namesOfCoins = createCoinNameArray(storedCoinNames);
-    setCoinNames(namesOfCoins);
+    const fetchDataFromAPI = async () => {
+      await getAPIData(API_URLS.coinList, storageKeys.coinNames);
+      const storedCoinNames = getFromSessionStorage(storageKeys.coinNames);
+      const namesOfCoins = createCoinNameArray(storedCoinNames);
+      setCoinNames(namesOfCoins);
+    };
+    fetchDataFromAPI();
   }, []);
 
   const coinNameList = coinNames.map((coins) => (
