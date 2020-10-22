@@ -1,7 +1,6 @@
 import axios from 'axios';
 
 import API_URLS from '../../api/constants';
-import storageKeys from '../session-storage/constants';
 
 import getAPIData from './index';
 
@@ -21,10 +20,7 @@ describe('getAPIData', () => {
     });
     const firstCoinName = 'test-coin-1';
 
-    const getRequest = await getAPIData(
-      API_URLS.coinList,
-      storageKeys.coinNames
-    );
+    const getRequest = await getAPIData(API_URLS.coinList);
     expect(getRequest[0].name).toEqual(firstCoinName);
   });
 });
