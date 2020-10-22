@@ -1,31 +1,54 @@
 import React, { useEffect, useState } from 'react';
+import { IfFulfilled, IfRejected, IfPending, useAsync } from 'react-async';
 
 import API_URLS from '../../api/constants';
-import storageKeys from '../../services/session-storage/constants';
 import getAPIData from '../../services/api';
 import { createCoinNameArray } from '../../utils';
-import { getFromSessionStorage } from '../../services/session-storage';
 
-const CoinNames = () => {
+const getDataFromAPI = async () => {
+  try {
+    const response = await getAPIData(API_URLS.coinList);
+    const namesOfCoins = createCoinNameArray(response);
+    return namesOfCoins;
+  } catch (error) {
+    return Promise.reject(new Error(error));
+  }
+};
+
+const useGetDataFromAPI = () => {
   const [coinNames, setCoinNames] = useState([]);
 
   useEffect(() => {
-    const fetchDataFromAPI = async () => {
-      await getAPIData(API_URLS.coinList, storageKeys.coinNames);
-      const storedCoinNames = getFromSessionStorage(storageKeys.coinNames);
-      const namesOfCoins = createCoinNameArray(storedCoinNames);
-      setCoinNames(namesOfCoins);
-    };
-    fetchDataFromAPI();
+    getDataFromAPI().then((results) => setCoinNames(results));
   }, []);
+  return coinNames;
+};
 
-  const coinNameList = coinNames.map((coins) => (
-    <tr key={coins}>
-      <td>{coins}</td>
-    </tr>
-  ));
+const CoinNames = () => {
+  const asyncData = useAsync(getDataFromAPI);
+  const coinNames = useGetDataFromAPI();
 
-  return <>{coinNameList}</>;
+  return (
+    <>
+      <IfFulfilled state={asyncData}>
+        {coinNames.map((coins) => (
+          <tr key={coins}>
+            <td>{coins}</td>
+          </tr>
+        ))}
+      </IfFulfilled>
+      <IfPending state={asyncData}>
+        <tr>
+          <td>Loading...</td>
+        </tr>
+      </IfPending>
+      <IfRejected state={asyncData}>
+        <tr>
+          <td>Sorry, could not find data </td>
+        </tr>
+      </IfRejected>
+    </>
+  );
 };
 
 export default CoinNames;
