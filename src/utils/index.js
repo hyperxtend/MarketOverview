@@ -5,3 +5,7 @@ export const createCoinNameArray = (coinArray) => {
 export const getFirst20Items = (items) => {
   return items.slice(0, 20);
 };
+
+export const getCoinIDs = (coinArray) => {
+  return coinArray.map((coin) => coin.id);
+};
