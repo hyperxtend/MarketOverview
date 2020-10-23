@@ -12,4 +12,15 @@ export const getAPIData = async (requestURL) => {
   return response;
 };
 
-export default getAPIData;
+export const getCoinDescription = async (requestURL, coinID) => {
+  const response = await axios
+    .get(
+      `${
+        requestURL + coinID
+      }?tickers=false&market_data=true&community_data=false&developer_data=false&sparkline=false`
+    )
+    .then((request) => request.data)
+    .catch((error) => error);
+  console.log(response.description.en);
+  return response.description.en;
+};
