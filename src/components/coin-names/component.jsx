@@ -25,7 +25,7 @@ const useGetDataFromAPI = () => {
 };
 
 const CoinNames = () => {
-  const asyncData = useAsync(getDataFromAPI);
+  const asyncData = useAsync({ promiseFn: getDataFromAPI });
   const coinNames = useGetDataFromAPI();
 
   return (
