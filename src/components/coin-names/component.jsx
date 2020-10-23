@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { IfFulfilled, IfRejected, IfPending, useAsync } from 'react-async';
 
 import API_URLS from '../../api/constants';
@@ -15,27 +15,21 @@ const getDataFromAPI = async () => {
   }
 };
 
-const useGetDataFromAPI = () => {
-  const [coinNames, setCoinNames] = useState([]);
-
-  useEffect(() => {
-    getDataFromAPI().then((results) => setCoinNames(results));
-  }, []);
-  return coinNames;
-};
-
 const CoinNames = () => {
   const asyncData = useAsync({ promiseFn: getDataFromAPI });
-  const coinNames = useGetDataFromAPI();
 
   return (
     <>
       <IfFulfilled state={asyncData}>
-        {coinNames.map((coins) => (
-          <tr key={coins}>
-            <td>{coins}</td>
-          </tr>
-        ))}
+        {
+          (data) =>
+            data.map((coins) => (
+              <tr key={coins}>
+                <td>{coins}</td>
+              </tr>
+            ))
+          // eslint-disable-next-line react/jsx-curly-newline
+        }
       </IfFulfilled>
       <IfPending state={asyncData}>
         <tr>
