@@ -2,7 +2,7 @@ import React from 'react';
 import { IfFulfilled, IfRejected, IfPending, useAsync } from 'react-async';
 
 import API_URLS from '../../api/constants';
-import getAPIData from '../../services/api';
+import { getAPIData } from '../../services/api';
 import { createCoinNameArray } from '../../utils';
 
 const getDataFromAPI = async () => {
