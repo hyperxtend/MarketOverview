@@ -1,6 +1,6 @@
 import React from 'react';
 
-import CoinNames from '../../components/coin-names';
+import CoinIDs from '../../components/coin-ids/component';
 
 const CoinTable = () => (
   <table>
@@ -10,7 +10,7 @@ const CoinTable = () => (
       </tr>
     </thead>
     <tbody>
-      <CoinNames />
+      <CoinIDs />
     </tbody>
   </table>
 );
