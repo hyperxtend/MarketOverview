@@ -1,5 +1,6 @@
 import axios from 'axios';
 
+import API_URLS from '../../api/constants';
 import { getFirst20Items } from '../../utils';
 
 export const getAPIData = async (requestURL) => {
@@ -12,13 +13,9 @@ export const getAPIData = async (requestURL) => {
   return response;
 };
 
-export const getCoinDescription = async (requestURL, coinID) => {
+export const getCoinDescription = async (coinIDs) => {
   const response = await axios
-    .get(
-      `${
-        requestURL + coinID
-      }?tickers=false&market_data=true&community_data=false&developer_data=false&sparkline=false`
-    )
+    .get(API_URLS.coinData[0] + coinIDs + API_URLS.coinData[1])
     .then((request) => request.data)
     .catch((error) => error);
   console.log(response.description.en);
