@@ -1,28 +1,27 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { IfFulfilled, IfRejected, IfPending, useAsync } from 'react-async';
 
 import API_URLS from '../../api/constants';
 import { getAPIData } from '../../services/api';
-import { createCoinNameArray } from '../../utils';
-import CoinDescription from '../coin-description/component';
+import { getCoinIDs } from '../../utils';
+import CoinNames from '../coin-names/component';
 
-const getDataFromAPI = async () => {
+const getCoinIDsFromAPI = async () => {
   try {
     const response = await getAPIData(API_URLS.coinList);
-    const namesOfCoins = createCoinNameArray(response);
-    return namesOfCoins;
+    const coinIDs = getCoinIDs(response);
+    return coinIDs;
   } catch (error) {
     return Promise.reject(new Error(error));
   }
 };
 
-const CoinNames = ({ coinID }) => {
-  const asyncData = useAsync({ promiseFn: getDataFromAPI });
+const CoinIDs = () => {
+  const asyncData = useAsync({ promiseFn: getCoinIDsFromAPI });
   return (
     <>
       <IfFulfilled state={asyncData}>
-        {(data) => <CoinDescription coinNames={data} coinID={coinID} />}
+        {(data) => data.map((coinID) => <CoinNames coinID={coinID} />)}
       </IfFulfilled>
       <IfPending state={asyncData}>
         <tr>
@@ -38,7 +37,4 @@ const CoinNames = ({ coinID }) => {
   );
 };
 
-CoinNames.propTypes = {
-  coinID: PropTypes.arrayOf(PropTypes.string).isRequired,
-};
-export default CoinNames;
+export default CoinIDs;
