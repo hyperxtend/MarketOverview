@@ -7,7 +7,7 @@ pipeline {
         
     stage('Cloning Git') {
       steps {
-        git 'https://github.com/gustavoapolinario/node-todo-frontend'
+        git branch: 'develop', url: 'https://github.com/hyperxtend/MarketOverview'
       }
     }
         
