@@ -1,8 +1,27 @@
-node{
-  stage('SCM Checkout'){
-    git branch: 'develop', url: 'https://github.com/hyperxtend/MarketOverview'   
+pipeline {
+  agent any
+    
+  tools {nodejs "node"}
+    
+  stages {
+        
+    stage('Cloning Git') {
+      steps {
+        git 'https://github.com/gustavoapolinario/node-todo-frontend'
+      }
+    }
+        
+    stage('Install dependencies') {
+      steps {
+        sh 'npm install'
+      }
+    }
+     
+    stage('Test') {
+      steps {
+         sh 'npm test'
+      }
+    }      
   }
-  stage('List config'){
-        sh 'npm config ls'
-  }
+}
 }
